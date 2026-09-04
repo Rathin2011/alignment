@@ -84,7 +84,7 @@ def metric_plot(aggregate_result, metric, title, ylabel, output, temporary):
         ))
     data.write_text("\n".join(rows) + "\n")
     run_gnuplot("""
-set terminal svg size 920,520 dynamic enhanced font 'Arial,12'
+set terminal svg size 920,520 dynamic enhanced font 'Arial,12' background rgb 'white'
 set output {output}
 set datafile separator '\t'
 set title {title}
@@ -116,7 +116,7 @@ def curve_plot(aggregate_result, output, temporary, task_label="permutation comp
             quote(data), colors[index], quote(LABELS[method])
         ))
     run_gnuplot("""
-set terminal svg size 940,560 dynamic enhanced font 'Arial,12'
+set terminal svg size 940,560 dynamic enhanced font 'Arial,12' background rgb 'white'
 set output {output}
 set datafile separator '\t'
 set title 'Held-out task performance during fine-tuning'
@@ -129,6 +129,46 @@ set grid ytics lc rgb '#dddddd'
 set key outside right center
 plot {plots}
 """.format(output=quote(output), plots=", \\\n     ".join(plots)))
+
+
+def causal_scatter(aggregate_result, output, temporary):
+    data = temporary / "causal_scatter.tsv"
+    labels = temporary / "causal_scatter_labels.tsv"
+    data.write_text("\n".join(
+        "{:.8f}\t{:.8f}\t{}".format(
+            aggregate_result["final"][method]["patch_accuracy"]["mean"],
+            aggregate_result["final"][method]["heldout_accuracy"]["mean"],
+            LABELS[method],
+        )
+        for method in aggregate_result["methods"]
+    ) + "\n")
+    labels.write_text("\n".join(
+        "{:.8f}\t{:.8f}\t{}".format(
+            aggregate_result["final"][method]["patch_accuracy"]["mean"],
+            aggregate_result["final"][method]["heldout_accuracy"]["mean"],
+            LABELS[method],
+        )
+        for method in aggregate_result["methods"]
+        if method not in {"multipass_z", "full_scaffold"}
+    ) + "\n")
+    run_gnuplot("""
+set terminal svg size 760,560 dynamic enhanced font 'Arial,12' background rgb 'white'
+set output {output}
+set datafile separator '\t'
+set title 'Causal control versus held-out performance'
+set xlabel 'Causal patching accuracy'
+set ylabel 'Held-out accuracy'
+set xrange [0:1.08]
+set yrange [0:1.08]
+set xtics 0.1
+set ytics 0.1
+set grid lc rgb '#dddddd'
+unset key
+set label 'Multi-pass Z' at 0.98,1.045 right
+set label 'Full scaffold' at 0.98,0.965 right
+plot {data} using 1:2 with points pt 7 ps 1.5 lc rgb '#4472c4', \
+     {labels} using 1:2:3 with labels offset char 0.7,0.7 left
+""".format(output=quote(output), data=quote(data), labels=quote(labels)))
 
 
 def render(paths, output_dir, task_label="permutation composition"):
@@ -145,6 +185,7 @@ def render(paths, output_dir, task_label="permutation composition"):
         metric_plot(result, "atomic_accuracy", "Retention of pretrained atomic operations",
                     "Atomic accuracy", output / "atomic_retention.svg", temporary)
         curve_plot(result, output / "learning_curves.svg", temporary)
+        causal_scatter(result, output / "causal_control_vs_ood.svg", temporary)
     return result
 
 
