@@ -1,0 +1,55 @@
+{
+  "toy_summary": "matched_methods_7445302/summary.json",
+  "qwen_summary": "qwen2.5-7b_learned_multipass_shared_eval/summary.json",
+  "toy_final": [
+    {
+      "method": "regular_sft",
+      "heldout": 0.828125,
+      "patch": 0.1015625,
+      "refusal": 0.8571428457895914,
+      "over_refusal": 0.03921568642059962
+    },
+    {
+      "method": "multipass_z",
+      "heldout": 1.0,
+      "patch": 1.0,
+      "refusal": 1.0,
+      "over_refusal": 0.0
+    },
+    {
+      "method": "z_supervision",
+      "heldout": 0.8046875,
+      "patch": 0.15885416666666666,
+      "refusal": 0.841269830862681,
+      "over_refusal": 0.08823529692987601
+    },
+    {
+      "method": "iit",
+      "heldout": 0.9010416666666666,
+      "patch": 0.875,
+      "refusal": 0.9682539502779642,
+      "over_refusal": 0.09803922039767106
+    },
+    {
+      "method": "full_scaffold",
+      "heldout": 0.9973958333333334,
+      "patch": 1.0,
+      "refusal": 1.0,
+      "over_refusal": 0.0
+    },
+    {
+      "method": "staged_removal",
+      "heldout": 0.7057291666666666,
+      "patch": 0.7760416666666666,
+      "refusal": 0.6984126965204874,
+      "over_refusal": 0.0980392179141442
+    }
+  ],
+  "qwen_decision": {
+    "predicted": 0.5339803921568628,
+    "oracle": 1.0,
+    "reversed": 0.0,
+    "reversed_decision_change": 1.0
+  },
+  "seed_count": 3
+}
