@@ -32,11 +32,16 @@ python -m src.srg_experiment.train_refusal \
   --learning-rate 1e-4 \
   --seed 2025
 
-python -m causal.evaluate_learned_multipass \
+eval_args=(
   --base-model "$model" \
   --adapter "$output/final_adapter" \
   --coca-data causal/COCA/data \
   --xstest artifacts/datasets/xstest/xstest_prompts.csv \
-  --base-results causal/results/qwen2.5-7b_no_sft/judged.jsonl \
-  --safe-results causal/results/qwen2.5-7b_principle_reasoning_pilot_eval/judged.jsonl \
   --output "${output}_eval"
+)
+base_results=causal/results/qwen2.5-7b_no_sft/judged.jsonl
+safe_results=causal/results/qwen2.5-7b_principle_reasoning_pilot_eval/judged.jsonl
+if [[ -f "$base_results" && -f "$safe_results" ]]; then
+  eval_args+=(--base-results "$base_results" --safe-results "$safe_results")
+fi
+python -m causal.evaluate_learned_multipass "${eval_args[@]}"

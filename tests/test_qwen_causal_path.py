@@ -2,10 +2,33 @@ import unittest
 
 from causal.evaluate_learned_multipass import flip_z, format_z, parse_decision
 from causal.evaluate_oracle_enforced_path import REFUSAL, enforce_oracle_path
+from causal.prepare_multipass_analyzer import build as build_balanced
 from causal.prepare_learned_multipass import build, without_policy
 
 
 class QTest(unittest.TestCase):
+    def test_balanced_analyzer_data(self):
+        records = [
+            {
+                "id": "harm", "prompt": "harm", "kind": "harmful",
+                "response": "refuse", "intent": "harmful",
+                "harm_types": ["violence"], "harm_severity": 3,
+                "actionability": 2, "policy": "refuse",
+            }
+        ] + [
+            {
+                "id": str(index), "prompt": "safe", "kind": "benign",
+                "response": "answer", "intent": "benign",
+                "harm_types": [], "harm_severity": 0,
+                "actionability": 0, "policy": "comply",
+            }
+            for index in range(2)
+        ]
+        examples = build_balanced(records, 1)
+        self.assertEqual(len(examples), 4)
+        self.assertEqual(sum(row["kind"] == "harmful" for row in examples), 2)
+        self.assertEqual(sum(row["kind"] == "benign" for row in examples), 2)
+
     def test_learned_multipass_interface(self):
         row = {
             "id": "one", "prompt": "request", "kind": "harmful",

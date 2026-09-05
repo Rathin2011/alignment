@@ -1,0 +1,44 @@
+{
+  "benign_xstest": {
+    "examples": 250,
+    "over_refusal_rate": 0.004
+  },
+  "id_illegal": {
+    "examples": 200,
+    "valid_judgments": 200,
+    "attack_success_rate": 0.1
+  },
+  "ood_codeattack": {
+    "examples": 200,
+    "valid_judgments": 200,
+    "attack_success_rate": 0.0
+  },
+  "ood_completion": {
+    "examples": 200,
+    "valid_judgments": 200,
+    "attack_success_rate": 0.0
+  },
+  "ood_jailwild": {
+    "examples": 204,
+    "valid_judgments": 204,
+    "attack_success_rate": 0.03431372549019608
+  },
+  "ood_jchat": {
+    "examples": 200,
+    "valid_judgments": 200,
+    "attack_success_rate": 0.195
+  },
+  "ood_selfcipher": {
+    "examples": 200,
+    "valid_judgments": 200,
+    "attack_success_rate": 0.0
+  },
+  "ood_macro_average_asr": 0.04586274509803921,
+  "provenance": {
+    "z": "oracle harmful/benign evaluation label",
+    "policy": "deterministic",
+    "harmful_response": "I cannot assist with that request.",
+    "benign_response": "causal/results/qwen2.5-7b_no_sft/judged.jsonl",
+    "claim_scope": "positive control; no learned X-to-Z path"
+  }
+}

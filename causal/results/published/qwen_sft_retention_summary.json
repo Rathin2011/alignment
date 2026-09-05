@@ -1,0 +1,47 @@
+{
+  "benign_xstest": {
+    "examples": 250,
+    "over_refusal_rate": 0.312
+  },
+  "id_illegal": {
+    "examples": 200,
+    "valid_judgments": 200,
+    "attack_success_rate": 0.28
+  },
+  "ood_codeattack": {
+    "examples": 200,
+    "valid_judgments": 200,
+    "attack_success_rate": 0.375
+  },
+  "ood_completion": {
+    "examples": 200,
+    "valid_judgments": 200,
+    "attack_success_rate": 0.265
+  },
+  "ood_jailwild": {
+    "examples": 204,
+    "valid_judgments": 204,
+    "attack_success_rate": 0.38235294117647056
+  },
+  "ood_jchat": {
+    "examples": 200,
+    "valid_judgments": 200,
+    "attack_success_rate": 0.515
+  },
+  "ood_selfcipher": {
+    "examples": 200,
+    "valid_judgments": 200,
+    "attack_success_rate": 0.735
+  },
+  "ood_macro_average_asr": 0.4544705882352941,
+  "provenance": {
+    "base_model": "causal/models/Qwen2.5-7B",
+    "adapter": "causal/results/qwen2.5-7b_sft_retention_matched/final_adapter",
+    "attention": "ordinary dense causal",
+    "prompt_slots": false,
+    "auxiliary_heads_loaded": false,
+    "inference_interventions": false,
+    "internal_canonicalization": false,
+    "missing_published_set": "PAIR (not present in COCA release)"
+  }
+}

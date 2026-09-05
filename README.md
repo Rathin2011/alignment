@@ -19,7 +19,13 @@ Both comparisons start from an atomically pretrained four-layer Transformer
 and test regular SFT, explicit two-pass `Z`, `Z` supervision, IIT, a full
 graph-cut/canonical scaffold, and staged scaffold removal. Each run records
 held-out accuracy, causal-intervention accuracy, atomic retention, and learning
-curves over three seeds.
+curves. The published safety result uses three seeds; the published permutation
+result is a single-seed pilot.
+
+See [REPRODUCIBILITY.md](REPRODUCIBILITY.md) for the complete data and execution
+path. Compact Qwen summaries are in `causal/results/published/`; large model
+weights, source datasets, and raw harmful generations are intentionally not
+stored in this repository.
 
 Run the checks from the repository root:
 
@@ -42,7 +48,7 @@ and a tagged safety-state `response`:
 
 ```bash
 python -m causal.prepare_learned_multipass \
-  --input causal/data/coca_causal_reasoning_pilot_seed2025.jsonl \
+  --input causal/data/qwen_multipass_analyzer_seed2025.jsonl \
   --output causal/data/qwen_learned_multipass_shared_seed2025.jsonl
 qsub jobs/run_qwen_learned_multipass.sh
 ```

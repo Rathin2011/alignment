@@ -1,0 +1,847 @@
+{
+  "task": "held-out composition y = B(A(x))",
+  "methods": [
+    "regular_sft",
+    "multipass_z",
+    "z_supervision",
+    "iit",
+    "full_scaffold",
+    "staged_removal"
+  ],
+  "matched_controls": {
+    "same_architecture": true,
+    "same_atomic_checkpoint_within_seed": true,
+    "same_256_composite_training_examples": true,
+    "same_768_heldout_examples": true,
+    "same_6000_update_budget": true
+  },
+  "staged_schedule": [
+    [
+      "graph_hard",
+      1500,
+      "graph",
+      "hard",
+      true
+    ],
+    [
+      "dense_hard",
+      750,
+      "dense",
+      "hard",
+      true
+    ],
+    [
+      "dense_soft",
+      750,
+      "dense",
+      "soft",
+      true
+    ],
+    [
+      "dense_blend",
+      1500,
+      "dense",
+      "blend",
+      true
+    ],
+    [
+      "dense_raw_lz",
+      500,
+      "dense",
+      "raw",
+      true
+    ],
+    [
+      "dense_raw_ly",
+      1000,
+      "dense",
+      "raw",
+      false
+    ]
+  ],
+  "runs": [
+    {
+      "primitive_seed": 31001,
+      "init_seed": 51001,
+      "base_atomic_accuracy": 1.0,
+      "integrity": {
+        "all_primitives_bijective": true,
+        "observed_edges_have_all_inputs": true,
+        "no_missing_edge_in_training": true,
+        "outputs_match_composition": true,
+        "partition_sizes_correct": true,
+        "spec_split_is_256_observed_768_heldout": true,
+        "latent_excluded_from_model_examples": true,
+        "example_ids_unique_and_fixed": true
+      },
+      "results": {
+        "regular_sft": {
+          "observed": {
+            "accuracy": 1.0,
+            "z_accuracy": 0.2578125
+          },
+          "heldout": {
+            "accuracy": 0.09375,
+            "z_accuracy": 0.2578125
+          },
+          "patch_accuracy": 0.0703125,
+          "atomic_accuracy": 0.19140625,
+          "history": [
+            {
+              "update": 0,
+              "phase": "regular_sft",
+              "observed": {
+                "accuracy": 0.0859375,
+                "z_accuracy": 0.84375
+              },
+              "heldout": {
+                "accuracy": 0.0950520858168602,
+                "z_accuracy": 0.84375
+              },
+              "patch_accuracy": 0.04296875
+            },
+            {
+              "update": 100,
+              "phase": "regular_sft",
+              "observed": {
+                "accuracy": 0.7109375,
+                "z_accuracy": 0.40625
+              },
+              "heldout": {
+                "accuracy": 0.0872395858168602,
+                "z_accuracy": 0.40625
+              },
+              "patch_accuracy": 0.0625
+            },
+            {
+              "update": 300,
+              "phase": "regular_sft",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 0.3125
+              },
+              "heldout": {
+                "accuracy": 0.0924479141831398,
+                "z_accuracy": 0.3125
+              },
+              "patch_accuracy": 0.068359375
+            },
+            {
+              "update": 1000,
+              "phase": "regular_sft",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 0.3203125
+              },
+              "heldout": {
+                "accuracy": 0.09375,
+                "z_accuracy": 0.3203125
+              },
+              "patch_accuracy": 0.068359375
+            },
+            {
+              "update": 2000,
+              "phase": "regular_sft",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 0.3046875
+              },
+              "heldout": {
+                "accuracy": 0.0924479141831398,
+                "z_accuracy": 0.3046875
+              },
+              "patch_accuracy": 0.068359375
+            },
+            {
+              "update": 4000,
+              "phase": "regular_sft",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 0.2890625
+              },
+              "heldout": {
+                "accuracy": 0.0911458358168602,
+                "z_accuracy": 0.2890625
+              },
+              "patch_accuracy": 0.0703125
+            },
+            {
+              "update": 6000,
+              "phase": "regular_sft",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 0.2578125
+              },
+              "heldout": {
+                "accuracy": 0.09375,
+                "z_accuracy": 0.2578125
+              },
+              "patch_accuracy": 0.0703125
+            },
+            {
+              "update": 6000,
+              "phase": "regular_sft",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 0.2578125
+              },
+              "heldout": {
+                "accuracy": 0.09375,
+                "z_accuracy": 0.2578125
+              },
+              "patch_accuracy": 0.0703125
+            }
+          ],
+          "final_inference": "one_forward_pass"
+        },
+        "multipass_z": {
+          "observed": {
+            "accuracy": 1.0,
+            "z_accuracy": 1.0
+          },
+          "heldout": {
+            "accuracy": 1.0,
+            "z_accuracy": 1.0
+          },
+          "patch_accuracy": 1.0,
+          "atomic_accuracy": 1.0,
+          "history": [
+            {
+              "update": 0,
+              "phase": "multipass_z",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 100,
+              "phase": "multipass_z",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 300,
+              "phase": "multipass_z",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 1000,
+              "phase": "multipass_z",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 2000,
+              "phase": "multipass_z",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 4000,
+              "phase": "multipass_z",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 6000,
+              "phase": "multipass_z",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            }
+          ],
+          "final_inference": "two_forward_passes"
+        },
+        "z_supervision": {
+          "observed": {
+            "accuracy": 1.0,
+            "z_accuracy": 1.0
+          },
+          "heldout": {
+            "accuracy": 0.1223958358168602,
+            "z_accuracy": 1.0
+          },
+          "patch_accuracy": 0.05859375,
+          "atomic_accuracy": 0.16015625,
+          "history": [
+            {
+              "update": 0,
+              "phase": "z_supervision",
+              "observed": {
+                "accuracy": 0.0859375,
+                "z_accuracy": 0.84375
+              },
+              "heldout": {
+                "accuracy": 0.0950520858168602,
+                "z_accuracy": 0.84375
+              },
+              "patch_accuracy": 0.04296875
+            },
+            {
+              "update": 100,
+              "phase": "z_supervision",
+              "observed": {
+                "accuracy": 0.71875,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.09375,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.048828125
+            },
+            {
+              "update": 300,
+              "phase": "z_supervision",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.11328125,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.0703125
+            },
+            {
+              "update": 1000,
+              "phase": "z_supervision",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.1171875,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.0625
+            },
+            {
+              "update": 2000,
+              "phase": "z_supervision",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.1184895858168602,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.052734375
+            },
+            {
+              "update": 4000,
+              "phase": "z_supervision",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.12109375,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.0546875
+            },
+            {
+              "update": 6000,
+              "phase": "z_supervision",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.1223958358168602,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.05859375
+            },
+            {
+              "update": 6000,
+              "phase": "z_supervision",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.1223958358168602,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.05859375
+            }
+          ],
+          "final_inference": "one_forward_pass"
+        },
+        "iit": {
+          "observed": {
+            "accuracy": 1.0,
+            "z_accuracy": 1.0
+          },
+          "heldout": {
+            "accuracy": 0.8893229365348816,
+            "z_accuracy": 1.0
+          },
+          "patch_accuracy": 0.88671875,
+          "atomic_accuracy": 0.1328125,
+          "history": [
+            {
+              "update": 0,
+              "phase": "iit",
+              "observed": {
+                "accuracy": 0.0859375,
+                "z_accuracy": 0.84375
+              },
+              "heldout": {
+                "accuracy": 0.0950520858168602,
+                "z_accuracy": 0.84375
+              },
+              "patch_accuracy": 0.04296875
+            },
+            {
+              "update": 100,
+              "phase": "iit",
+              "observed": {
+                "accuracy": 0.34375,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.1080729141831398,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.076171875
+            },
+            {
+              "update": 300,
+              "phase": "iit",
+              "observed": {
+                "accuracy": 0.83984375,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.1197916641831398,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.142578125
+            },
+            {
+              "update": 1000,
+              "phase": "iit",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.4986979067325592,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.515625
+            },
+            {
+              "update": 2000,
+              "phase": "iit",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.8372395634651184,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.8359375
+            },
+            {
+              "update": 4000,
+              "phase": "iit",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.8697916865348816,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.869140625
+            },
+            {
+              "update": 6000,
+              "phase": "iit",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.8893229365348816,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.88671875
+            },
+            {
+              "update": 6000,
+              "phase": "iit",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.8893229365348816,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.88671875
+            }
+          ],
+          "final_inference": "one_forward_pass"
+        },
+        "full_scaffold": {
+          "observed": {
+            "accuracy": 1.0,
+            "z_accuracy": 1.0
+          },
+          "heldout": {
+            "accuracy": 1.0,
+            "z_accuracy": 1.0
+          },
+          "patch_accuracy": 1.0,
+          "atomic_accuracy": 0.3515625,
+          "history": [
+            {
+              "update": 0,
+              "phase": "full_scaffold",
+              "observed": {
+                "accuracy": 0.05859375,
+                "z_accuracy": 0.84375
+              },
+              "heldout": {
+                "accuracy": 0.0611979179084301,
+                "z_accuracy": 0.84375
+              },
+              "patch_accuracy": 0.05859375
+            },
+            {
+              "update": 100,
+              "phase": "full_scaffold",
+              "observed": {
+                "accuracy": 0.3046875,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.3046875,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.271484375
+            },
+            {
+              "update": 300,
+              "phase": "full_scaffold",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 1000,
+              "phase": "full_scaffold",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 2000,
+              "phase": "full_scaffold",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 4000,
+              "phase": "full_scaffold",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 6000,
+              "phase": "full_scaffold",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 6000,
+              "phase": "full_scaffold",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            }
+          ],
+          "final_inference": "one_forward_pass"
+        },
+        "staged_removal": {
+          "observed": {
+            "accuracy": 1.0,
+            "z_accuracy": 1.0
+          },
+          "heldout": {
+            "accuracy": 0.11328125,
+            "z_accuracy": 1.0
+          },
+          "patch_accuracy": 0.08984375,
+          "atomic_accuracy": 0.1171875,
+          "history": [
+            {
+              "update": 0,
+              "phase": "graph_hard",
+              "observed": {
+                "accuracy": 0.05859375,
+                "z_accuracy": 0.84375
+              },
+              "heldout": {
+                "accuracy": 0.0611979179084301,
+                "z_accuracy": 0.84375
+              },
+              "patch_accuracy": 0.05859375
+            },
+            {
+              "update": 100,
+              "phase": "graph_hard",
+              "observed": {
+                "accuracy": 0.3046875,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.3046875,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.271484375
+            },
+            {
+              "update": 300,
+              "phase": "graph_hard",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 1000,
+              "phase": "graph_hard",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 1500,
+              "phase": "graph_hard",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 1.0
+            },
+            {
+              "update": 2000,
+              "phase": "dense_hard",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.2955729067325592,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.25
+            },
+            {
+              "update": 2250,
+              "phase": "dense_hard",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.2955729067325592,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.25390625
+            },
+            {
+              "update": 3000,
+              "phase": "dense_soft",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.2955729067325592,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.26171875
+            },
+            {
+              "update": 4000,
+              "phase": "dense_blend",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.1875,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.169921875
+            },
+            {
+              "update": 4500,
+              "phase": "dense_blend",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.109375,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.09375
+            },
+            {
+              "update": 5000,
+              "phase": "dense_raw_lz",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.1158854141831398,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.09765625
+            },
+            {
+              "update": 6000,
+              "phase": "dense_raw_ly",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.11328125,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.08984375
+            },
+            {
+              "update": 6000,
+              "phase": "dense_raw_ly",
+              "observed": {
+                "accuracy": 1.0,
+                "z_accuracy": 1.0
+              },
+              "heldout": {
+                "accuracy": 0.11328125,
+                "z_accuracy": 1.0
+              },
+              "patch_accuracy": 0.08984375
+            }
+          ],
+          "final_inference": "one_pass_dense_raw_without_auxiliary_loss"
+        }
+      }
+    }
+  ]
+}
